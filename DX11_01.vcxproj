@@ -157,6 +157,17 @@
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="HLSL\Cube.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HLSL\Cube_PS.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="HLSL\Cube_VS.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

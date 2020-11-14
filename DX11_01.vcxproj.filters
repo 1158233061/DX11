@@ -51,4 +51,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="HLSL\Cube.hlsli" />
+    <None Include="HLSL\Cube_PS.hlsl" />
+    <None Include="HLSL\Cube_VS.hlsl" />
+  </ItemGroup>
 </Project>
