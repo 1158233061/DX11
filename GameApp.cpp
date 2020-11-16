@@ -66,6 +66,8 @@ void GameApp::UpdateScene(float dt)
 		cubeTheta += dt * 2;
 	if (keyState.IsKeyDown(Keyboard::D))
 		cubeTheta -= dt * 2;
+	if (keyState.IsKeyDown(Keyboard::R))
+		cubeTheta = cubePhi = 0;
 
 	m_CBuffer.world = XMMatrixTranspose(XMMatrixRotationZ(cubePhi) * XMMatrixRotationY(cubeTheta));
 	// 更新常量缓冲区，让立方体转起来
