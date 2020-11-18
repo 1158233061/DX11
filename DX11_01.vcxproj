@@ -166,6 +166,7 @@
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="HLSL\Basic.hlsli" />
     <None Include="HLSL\Cube.hlsli" />
     <None Include="HLSL\Light.hlsli" />
     <None Include="HLSL\LightHelper.hlsli" />
@@ -183,6 +184,20 @@
       <FileType>Document</FileType>
     </None>
     <None Include="HLSL\Light_VS.hlsl">
+      <FileType>Document</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HLSL\Basic_PS_2D.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="HLSL\Basic_PS_3D.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="HLSL\Basic_VS_2D.hlsl">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="HLSL\Basic_VS_3D.hlsl">
       <FileType>Document</FileType>
     </None>
   </ItemGroup>
