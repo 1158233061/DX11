@@ -143,8 +143,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="d3dApp.h" />
     <ClInclude Include="d3dUtil.h" />
+    <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="DXTrace.h" />
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="GameTimer.h" />
@@ -152,18 +154,24 @@
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="LightHelper.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="WICTextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="d3dApp.cpp" />
     <ClCompile Include="d3dUtil.cpp" />
+    <ClCompile Include="DDSTextureLoader.cpp" />
     <ClCompile Include="DXTrace.cpp" />
     <ClCompile Include="GameApp.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="WICTextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HLSL\Basic.hlsli" />
