@@ -12,7 +12,6 @@
 #include <wrl/client.h>
 #include <d3d11_1.h>
 
-
 class RenderStates
 {
 public:
@@ -20,7 +19,9 @@ public:
 	using ComPtr = Microsoft::WRL::ComPtr<T>;
 
 	static bool IsInit();
-	static void InitAll(ID3D11Device* device);
+
+	static void InitAll(ID3D11Device * device);
+	// 使用ComPtr无需手工释放
 
 public:
 	static ComPtr<ID3D11RasterizerState> RSWireframe;		    // 光栅化器状态：线框模式
@@ -40,7 +41,6 @@ public:
 	static ComPtr<ID3D11DepthStencilState> DSSNoDepthTest;		// 深度/模板状态：关闭深度测试
 	static ComPtr<ID3D11DepthStencilState> DSSNoDepthWrite;		// 深度/模板状态：仅深度测试，不写入深度值
 };
-
 
 
 
