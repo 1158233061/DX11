@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 *.cso
 /HLSL/*.cso
+/HLSL/*.cso

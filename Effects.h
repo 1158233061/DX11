@@ -1,4 +1,7 @@
-﻿//***************************************************************************************
+//***************************************************************************************
+// Effects.h by X_Jun(MKXJun) (C) 2018-2020 All Rights Reserved.
+// Licensed under the MIT License.
+//
 // 简易特效管理框架
 // Simple effect management framework.
 //***************************************************************************************
@@ -9,6 +12,7 @@
 #include <memory>
 #include "LightHelper.h"
 #include "RenderStates.h"
+
 
 class IEffect
 {
@@ -26,13 +30,15 @@ public:
 	IEffect& operator=(IEffect&&) = default;
 
 	// 更新并绑定常量缓冲区
-	virtual void Apply(ID3D11DeviceContext* deviceContext) = 0;
+	virtual void Apply(ID3D11DeviceContext * deviceContext) = 0;
 };
 
 
 class BasicEffect : public IEffect
 {
 public:
+
+	enum RenderType { RenderObject, RenderInstance };
 
 	BasicEffect();
 	virtual ~BasicEffect() override;
@@ -43,35 +49,19 @@ public:
 	// 获取单例
 	static BasicEffect& Get();
 
-
+	
 
 	// 初始化所需资源
-	bool InitAll(ID3D11Device* device);
+	bool InitAll(ID3D11Device * device);
 
 
-	//
+	// 
 	// 渲染模式的变更
 	//
 
 	// 默认状态来绘制
-	void SetRenderDefault(ID3D11DeviceContext* deviceContext);
-	// Alpha混合绘制
-	void SetRenderAlphaBlend(ID3D11DeviceContext* deviceContext);
-	// 无二次混合
-	void SetRenderNoDoubleBlend(ID3D11DeviceContext* deviceContext, UINT stencilRef);
-	// 仅写入模板值
-	void SetWriteStencilOnly(ID3D11DeviceContext* deviceContext, UINT stencilRef);
-	// 对指定模板值的区域进行绘制，采用默认状态
-	void SetRenderDefaultWithStencil(ID3D11DeviceContext* deviceContext, UINT stencilRef);
-	// 对指定模板值的区域进行绘制，采用Alpha混合
-	void SetRenderAlphaBlendWithStencil(ID3D11DeviceContext* deviceContext, UINT stencilRef);
-	// 2D默认状态绘制
-	void Set2DRenderDefault(ID3D11DeviceContext* deviceContext);
-	// 2D混合绘制
-	void Set2DRenderAlphaBlend(ID3D11DeviceContext* deviceContext);
-
-
-
+	void SetRenderDefault(ID3D11DeviceContext * deviceContext, RenderType type);
+	
 	//
 	// 矩阵设置
 	//
@@ -79,11 +69,7 @@ public:
 	void XM_CALLCONV SetWorldMatrix(DirectX::FXMMATRIX W);
 	void XM_CALLCONV SetViewMatrix(DirectX::FXMMATRIX V);
 	void XM_CALLCONV SetProjMatrix(DirectX::FXMMATRIX P);
-
-	void XM_CALLCONV SetReflectionMatrix(DirectX::FXMMATRIX R);
-	void XM_CALLCONV SetShadowMatrix(DirectX::FXMMATRIX S);
-	void XM_CALLCONV SetRefShadowMatrix(DirectX::FXMMATRIX RefS);
-
+	
 	//
 	// 光照、材质和纹理相关设置
 	//
@@ -97,29 +83,72 @@ public:
 
 	void SetMaterial(const Material& material);
 
-	void SetTexture(ID3D11ShaderResourceView* texture);
+
+	void SetTextureUsed(bool isUsed);
+
+	void SetTextureDiffuse(ID3D11ShaderResourceView * textureDiffuse);
+	void SetTextureCube(ID3D11ShaderResourceView * textureCube);
 
 	void SetEyePos(const DirectX::XMFLOAT3& eyePos);
-
-
-
+	
 	//
 	// 状态开关设置
 	//
 
-	void SetReflectionState(bool isOn);
-	void SetShadowState(bool isOn);
+	void SetReflectionEnabled(bool isEnable);
 
 
 	// 应用常量缓冲区和纹理资源的变更
-	void Apply(ID3D11DeviceContext* deviceContext) override;
-
+	void Apply(ID3D11DeviceContext * deviceContext) override;
+	
 private:
 	class Impl;
 	std::unique_ptr<Impl> pImpl;
 };
 
+class SkyEffect : public IEffect
+{
+public:
+	SkyEffect();
+	virtual ~SkyEffect() override;
 
+	SkyEffect(SkyEffect&& moveFrom) noexcept;
+	SkyEffect& operator=(SkyEffect&& moveFrom) noexcept;
+
+	// 获取单例
+	static SkyEffect& Get();
+
+	// 初始化所需资源
+	bool InitAll(ID3D11Device * device);
+
+	// 
+	// 渲染模式的变更
+	//
+
+	// 默认状态来绘制
+	void SetRenderDefault(ID3D11DeviceContext * deviceContext);
+
+	//
+	// 矩阵设置
+	//
+
+	void XM_CALLCONV SetWorldViewProjMatrix(DirectX::FXMMATRIX W, DirectX::CXMMATRIX V, DirectX::CXMMATRIX P);
+	void XM_CALLCONV SetWorldViewProjMatrix(DirectX::FXMMATRIX WVP);
+
+	//
+	// 纹理立方体映射设置
+	//
+
+	void SetTextureCube(ID3D11ShaderResourceView * textureCube);
+
+
+	// 应用常量缓冲区和纹理资源的变更
+	void Apply(ID3D11DeviceContext * deviceContext) override;
+
+private:
+	class Impl;
+	std::unique_ptr<Impl> pImpl;
+};
 
 
 

@@ -1,55 +1,51 @@
 #include "LightHelper.hlsli"
 
-Texture2D g_Tex : register(t0);
+Texture2D g_DiffuseMap : register(t0);
+TextureCube g_TexCube : register(t1);
 SamplerState g_Sam : register(s0);
 
 
-cbuffer CBChangesEveryDrawing : register(b0)
+cbuffer CBChangesEveryInstanceDrawing : register(b0)
 {
-	matrix g_World;
-	matrix g_WorldInvTranspose;
-	Material g_Material;
+    matrix g_World;
+    matrix g_WorldInvTranspose;
 }
 
-cbuffer CBDrawingStates : register(b1)
+cbuffer CBChangesEveryObjectDrawing : register(b1)
 {
-    int g_IsReflection;
-    int g_IsShadow;
+    Material g_Material;
 }
 
-cbuffer CBChangesEveryFrame : register(b2)
+cbuffer CBDrawingStates : register(b2)
 {
-	matrix g_View;
-	float3 g_EyePosW;
+    int g_TextureUsed;
+    int g_ReflectionEnabled;
+    float2 g_Pad;
 }
 
-cbuffer CBChangesOnResize : register(b3)
+cbuffer CBChangesEveryFrame : register(b3)
 {
-	matrix g_Proj;
+    matrix g_View;
+    float3 g_EyePosW;
+    float g_Pad2;
 }
 
-cbuffer CBChangesRarely : register(b4)
+cbuffer CBChangesOnResize : register(b4)
 {
-    matrix g_Reflection;
-    matrix g_Shadow;
-    matrix g_RefShadow;
-	DirectionalLight g_DirLight[5];
-	PointLight g_PointLight[5];
-	SpotLight g_SpotLight[5];
+    matrix g_Proj;
 }
 
-
+cbuffer CBChangesRarely : register(b5)
+{
+    DirectionalLight g_DirLight[5];
+    PointLight g_PointLight[5];
+    SpotLight g_SpotLight[5];
+}
 
 struct VertexPosNormalTex
 {
     float3 PosL : POSITION;
     float3 NormalL : NORMAL;
-    float2 Tex : TEXCOORD;
-};
-
-struct VertexPosTex
-{
-    float3 PosL : POSITION;
     float2 Tex : TEXCOORD;
 };
 
@@ -61,14 +57,14 @@ struct VertexPosHWNormalTex
     float2 Tex : TEXCOORD;
 };
 
-struct VertexPosHTex
+struct InstancePosNormalTex
 {
-    float4 PosH : SV_POSITION;
+    float3 PosL : POSITION;
+    float3 NormalL : NORMAL;
     float2 Tex : TEXCOORD;
+    matrix World : World;
+    matrix WorldInvTranspose : WorldInvTranspose;
 };
-
-
-
 
 
 

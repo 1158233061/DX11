@@ -1,8 +1,9 @@
-﻿#ifndef LIGHTHELPER_H
+#ifndef LIGHTHELPER_H
 #define LIGHTHELPER_H
 
 #include <cstring>
 #include <DirectXMath.h>
+
 
 // 方向光
 struct DirectionalLight
@@ -15,10 +16,7 @@ struct DirectionalLight
 	DirectionalLight(DirectionalLight&&) = default;
 	DirectionalLight& operator=(DirectionalLight&&) = default;
 
-	DirectionalLight(
-		const DirectX::XMFLOAT4& _ambient, 
-		const DirectX::XMFLOAT4& _diffuse, 
-		const DirectX::XMFLOAT4& _specular,
+	DirectionalLight(const DirectX::XMFLOAT4& _ambient, const DirectX::XMFLOAT4& _diffuse, const DirectX::XMFLOAT4& _specular,
 		const DirectX::XMFLOAT3& _direction) :
 		ambient(_ambient), diffuse(_diffuse), specular(_specular), direction(_direction), pad() {}
 
@@ -40,13 +38,8 @@ struct PointLight
 	PointLight(PointLight&&) = default;
 	PointLight& operator=(PointLight&&) = default;
 
-	PointLight(
-		const DirectX::XMFLOAT4& _ambient, 
-		const DirectX::XMFLOAT4& _diffuse, 
-		const DirectX::XMFLOAT4& _specular,
-		const DirectX::XMFLOAT3& _position, 
-		float _range, 
-		const DirectX::XMFLOAT3& _att) :
+	PointLight(const DirectX::XMFLOAT4& _ambient, const DirectX::XMFLOAT4& _diffuse, const DirectX::XMFLOAT4& _specular,
+		const DirectX::XMFLOAT3& _position, float _range, const DirectX::XMFLOAT3& _att) :
 		ambient(_ambient), diffuse(_diffuse), specular(_specular), position(_position), range(_range), att(_att), pad() {}
 
 	DirectX::XMFLOAT4 ambient;
@@ -73,16 +66,10 @@ struct SpotLight
 	SpotLight(SpotLight&&) = default;
 	SpotLight& operator=(SpotLight&&) = default;
 
-	SpotLight(
-		const DirectX::XMFLOAT4& _ambient, 
-		const DirectX::XMFLOAT4& _diffuse, 
-		const DirectX::XMFLOAT4& _specular,
-		const DirectX::XMFLOAT3& _position, 
-		float _range, 
-		const DirectX::XMFLOAT3& _direction,
-		float _spot, 
-		const DirectX::XMFLOAT3& _att) :
-		ambient(_ambient), diffuse(_diffuse), specular(_specular),
+	SpotLight(const DirectX::XMFLOAT4& _ambient, const DirectX::XMFLOAT4& _diffuse, const DirectX::XMFLOAT4& _specular,
+		const DirectX::XMFLOAT3& _position, float _range, const DirectX::XMFLOAT3& _direction,
+		float _spot, const DirectX::XMFLOAT3& _att) :
+		ambient(_ambient), diffuse(_diffuse), specular(_specular), 
 		position(_position), range(_range), direction(_direction), spot(_spot), att(_att), pad() {}
 
 	DirectX::XMFLOAT4 ambient;
@@ -113,10 +100,7 @@ struct Material
 	Material(Material&&) = default;
 	Material& operator=(Material&&) = default;
 
-	Material(
-		const DirectX::XMFLOAT4& _ambient, 
-		const DirectX::XMFLOAT4& _diffuse, 
-		const DirectX::XMFLOAT4& _specular,
+	Material(const DirectX::XMFLOAT4& _ambient, const DirectX::XMFLOAT4& _diffuse, const DirectX::XMFLOAT4& _specular,
 		const DirectX::XMFLOAT4& _reflect) :
 		ambient(_ambient), diffuse(_diffuse), specular(_specular), reflect(_reflect) {}
 
@@ -126,4 +110,4 @@ struct Material
 	DirectX::XMFLOAT4 reflect;
 };
 
-#endif // !LIGHTHELPER_H
+#endif

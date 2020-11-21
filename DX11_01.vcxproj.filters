@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="HLSL">
+      <UniqueIdentifier>{99c57bdd-c7ba-4d7e-abfb-02fe4a022915}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dApp.h">
@@ -69,6 +72,15 @@
     <ClInclude Include="GameObject.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SkyRender.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="d3dApp.cpp">
@@ -98,18 +110,6 @@
     <ClCompile Include="Vertex.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
-    <ClCompile Include="DDSTextureLoader.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
-    <ClCompile Include="WICTextureLoader.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
     <ClCompile Include="RenderStates.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -119,15 +119,55 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="SkyRender.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyEffect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DDSTextureLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WICTextureLoader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="HLSL\LightHelper.hlsli" />
-    <None Include="HLSL\Basic.hlsli" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="HLSL\Basic_PS_2D.hlsl" />
-    <FxCompile Include="HLSL\Basic_PS_3D.hlsl" />
-    <FxCompile Include="HLSL\Basic_VS_2D.hlsl" />
-    <FxCompile Include="HLSL\Basic_VS_3D.hlsl" />
+    <None Include="HLSL\Basic.hlsli">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\Basic_PS.hlsl">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\BasicInstance_VS.hlsl">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\BasicObject_VS.hlsl">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\LightHelper.hlsli">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\Sky.hlsli">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\Sky_PS.hlsl">
+      <Filter>HLSL</Filter>
+    </None>
+    <None Include="HLSL\Sky_VS.hlsl">
+      <Filter>HLSL</Filter>
+    </None>
   </ItemGroup>
 </Project>
